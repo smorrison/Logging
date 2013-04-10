@@ -1,8 +1,5 @@
 //
 //  Logging.m
-//  Logging
-//
-//  Created by Sean Morrison on 2013-04-09.
 //  Copyright (c) 2013 Sean Morrison. All rights reserved.
 //
 
@@ -20,9 +17,6 @@ typedef enum {
 } logCategory;
 
 static void Log(logCategory category, NSString *message, va_list args);
-static const char * GetLoggingName();
-static dispatch_io_t LogFileDispatchChannel();
-static dispatch_queue_t LogFileDispatchQueue();
 
 void LogInfo(NSString *message, ...)
 {
@@ -68,7 +62,7 @@ void LogAssert(BOOL statement, NSString *message, ...)
     }
 }
 
-const char * GetLoggingName()
+static const char * GetLoggingName()
 {
     static char *name;
     static dispatch_once_t onceToken;
@@ -82,53 +76,32 @@ const char * GetLoggingName()
     return name;
 }
 
-void Log(logCategory category, NSString *message, va_list args)
+static const char * GetCategoryName(logCategory category)
 {
-    static NSDateFormatter *formatter;
-    static dispatch_once_t onceToken;
-    static pid_t processId;
-    dispatch_once(&onceToken, ^{
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"y-MM-dd HH:mm:s.SSS"];
-        processId = [[NSProcessInfo processInfo] processIdentifier];
-    });
-    NSDate *date = [[NSDate alloc] init];
-    NSString *formattedMessage = [[NSString alloc] initWithFormat:message arguments:args];
-    NSString *categoryString = @"";
+    const char *categoryString = "";
     switch (category) {
         case LOG_FAILED_ASSERT:
-            categoryString = @" ASSERT";
+            categoryString = " ASSERT";
             break;
         case LOG_DEBUG:
-            categoryString = @" DEBUG";
+            categoryString = " DEBUG";
             break;
         case LOG_INFO:
-            categoryString = @" INFO";
+            categoryString = " INFO";
             break;
         case LOG_WARNING:
-            categoryString = @" WARNING";
+            categoryString = " WARNING";
             break;
         case LOG_ERROR:
-            categoryString = @" ERROR";
+            categoryString = " ERROR";
             break;
         default:
             break;
     }
-    NSString *string = [[NSString alloc] initWithFormat:@"%@ [%d]%@ %@\n", [formatter stringFromDate:date], processId, categoryString, formattedMessage];
-    const char *stringData = [string UTF8String];
-    dispatch_queue_t queue = LogFileDispatchQueue();
-    dispatch_io_t channel = LogFileDispatchChannel();
-    dispatch_data_t dispatchData = dispatch_data_create(stringData, strlen(stringData) * sizeof(char), queue, DISPATCH_DATA_DESTRUCTOR_DEFAULT);
-    dispatch_io_write(channel, 0, dispatchData, queue, ^(bool done, dispatch_data_t data, int error){});
-    dispatch_release(dispatchData);
-#if !(__has_feature(objc_arc))
-    [string release];
-    [formattedMessage release];
-    [date release];
-#endif
+    return categoryString;
 }
 
-dispatch_queue_t LogFileDispatchQueue()
+static dispatch_queue_t LogFileDispatchQueue()
 {
     static dispatch_queue_t queue;
     static dispatch_once_t onceToken;
@@ -138,7 +111,7 @@ dispatch_queue_t LogFileDispatchQueue()
     return queue;
 }
 
-dispatch_io_t LogFileDispatchChannel()
+static dispatch_io_t LogFileDispatchChannel()
 {
     static dispatch_io_t channel;
     static dispatch_once_t onceToken;
@@ -167,4 +140,30 @@ dispatch_io_t LogFileDispatchChannel()
 #endif
     });
     return channel;
+}
+
+void Log(logCategory category, NSString *message, va_list args)
+{
+    static NSDateFormatter *formatter;
+    static dispatch_once_t onceToken;
+    static pid_t processId;
+    dispatch_once(&onceToken, ^{
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"y-MM-dd HH:mm:s.SSS"];
+        processId = [[NSProcessInfo processInfo] processIdentifier];
+    });
+    NSDate *date = [[NSDate alloc] init];
+    NSString *formattedMessage = [[NSString alloc] initWithFormat:message arguments:args];
+    NSString *string = [[NSString alloc] initWithFormat:@"%@ [%d]%s %@\n", [formatter stringFromDate:date], processId, GetCategoryName(category), formattedMessage];
+    const char *stringData = [string UTF8String];
+    dispatch_queue_t queue = LogFileDispatchQueue();
+    dispatch_io_t channel = LogFileDispatchChannel();
+    dispatch_data_t dispatchData = dispatch_data_create(stringData, strlen(stringData) * sizeof(char), queue, DISPATCH_DATA_DESTRUCTOR_DEFAULT);
+    dispatch_io_write(channel, 0, dispatchData, queue, ^(bool done, dispatch_data_t data, int error){});
+    dispatch_release(dispatchData);
+#if !(__has_feature(objc_arc))
+    [string release];
+    [formattedMessage release];
+    [date release];
+#endif
 }

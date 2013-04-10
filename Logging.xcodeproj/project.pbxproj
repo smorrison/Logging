@@ -7,40 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1434B4131715188F0083E976 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1434B4121715188F0083E976 /* Cocoa.framework */; };
 		1434B41D1715188F0083E976 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 1434B41C1715188F0083E976 /* Logging.m */; };
-		1434B4251715188F0083E976 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1434B4241715188F0083E976 /* SenTestingKit.framework */; };
-		1434B4261715188F0083E976 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1434B4121715188F0083E976 /* Cocoa.framework */; };
-		1434B4291715188F0083E976 /* libLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1434B40F1715188F0083E976 /* libLogging.a */; };
-		1434B42F1715188F0083E976 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1434B42D1715188F0083E976 /* InfoPlist.strings */; };
-		1434B4321715188F0083E976 /* LoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1434B4311715188F0083E976 /* LoggingTests.m */; };
+		1434B4561715A8590083E976 /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 1434B41B1715188F0083E976 /* Logging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		1434B4271715188F0083E976 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1434B4071715188F0083E976 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1434B40E1715188F0083E976;
-			remoteInfo = Logging;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1434B40F1715188F0083E976 /* libLogging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLogging.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		1434B4121715188F0083E976 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		1434B4151715188F0083E976 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		1434B4161715188F0083E976 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1434B4171715188F0083E976 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1434B41A1715188F0083E976 /* Logging-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Logging-Prefix.pch"; sourceTree = "<group>"; };
 		1434B41B1715188F0083E976 /* Logging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		1434B41C1715188F0083E976 /* Logging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logging.m; sourceTree = "<group>"; };
-		1434B4231715188F0083E976 /* LoggingTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoggingTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1434B4241715188F0083E976 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		1434B42C1715188F0083E976 /* LoggingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LoggingTests-Info.plist"; sourceTree = "<group>"; };
-		1434B42E1715188F0083E976 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1434B4301715188F0083E976 /* LoggingTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggingTests.h; sourceTree = "<group>"; };
-		1434B4311715188F0083E976 /* LoggingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoggingTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,17 +24,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1434B4131715188F0083E976 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1434B41F1715188F0083E976 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1434B4251715188F0083E976 /* SenTestingKit.framework in Frameworks */,
-				1434B4261715188F0083E976 /* Cocoa.framework in Frameworks */,
-				1434B4291715188F0083E976 /* libLogging.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,7 +34,6 @@
 			isa = PBXGroup;
 			children = (
 				1434B4181715188F0083E976 /* Logging */,
-				1434B42A1715188F0083E976 /* LoggingTests */,
 				1434B4111715188F0083E976 /* Frameworks */,
 				1434B4101715188F0083E976 /* Products */,
 			);
@@ -79,7 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				1434B40F1715188F0083E976 /* libLogging.a */,
-				1434B4231715188F0083E976 /* LoggingTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,21 +50,9 @@
 		1434B4111715188F0083E976 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1434B4121715188F0083E976 /* Cocoa.framework */,
-				1434B4241715188F0083E976 /* SenTestingKit.framework */,
-				1434B4141715188F0083E976 /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1434B4141715188F0083E976 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1434B4151715188F0083E976 /* AppKit.framework */,
-				1434B4161715188F0083E976 /* CoreData.framework */,
 				1434B4171715188F0083E976 /* Foundation.framework */,
 			);
-			name = "Other Frameworks";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		1434B4181715188F0083E976 /* Logging */ = {
@@ -122,25 +73,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1434B42A1715188F0083E976 /* LoggingTests */ = {
-			isa = PBXGroup;
-			children = (
-				1434B4301715188F0083E976 /* LoggingTests.h */,
-				1434B4311715188F0083E976 /* LoggingTests.m */,
-				1434B42B1715188F0083E976 /* Supporting Files */,
-			);
-			path = LoggingTests;
-			sourceTree = "<group>";
-		};
-		1434B42B1715188F0083E976 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1434B42C1715188F0083E976 /* LoggingTests-Info.plist */,
-				1434B42D1715188F0083E976 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -148,6 +80,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1434B4561715A8590083E976 /* Logging.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,25 +104,6 @@
 			productReference = 1434B40F1715188F0083E976 /* libLogging.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		1434B4221715188F0083E976 /* LoggingTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1434B4381715188F0083E976 /* Build configuration list for PBXNativeTarget "LoggingTests" */;
-			buildPhases = (
-				1434B41E1715188F0083E976 /* Sources */,
-				1434B41F1715188F0083E976 /* Frameworks */,
-				1434B4201715188F0083E976 /* Resources */,
-				1434B4211715188F0083E976 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1434B4281715188F0083E976 /* PBXTargetDependency */,
-			);
-			name = LoggingTests;
-			productName = LoggingTests;
-			productReference = 1434B4231715188F0083E976 /* LoggingTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,37 +126,9 @@
 			projectRoot = "";
 			targets = (
 				1434B40E1715188F0083E976 /* Logging */,
-				1434B4221715188F0083E976 /* LoggingTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		1434B4201715188F0083E976 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1434B42F1715188F0083E976 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1434B4211715188F0083E976 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1434B40B1715188F0083E976 /* Sources */ = {
@@ -253,34 +139,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1434B41E1715188F0083E976 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1434B4321715188F0083E976 /* LoggingTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		1434B4281715188F0083E976 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1434B40E1715188F0083E976 /* Logging */;
-			targetProxy = 1434B4271715188F0083E976 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		1434B42D1715188F0083E976 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1434B42E1715188F0083E976 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1434B4331715188F0083E976 /* Debug */ = {
@@ -362,32 +221,6 @@
 			};
 			name = Release;
 		};
-		1434B4391715188F0083E976 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Logging/Logging-Prefix.pch";
-				INFOPLIST_FILE = "LoggingTests/LoggingTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		1434B43A1715188F0083E976 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Logging/Logging-Prefix.pch";
-				INFOPLIST_FILE = "LoggingTests/LoggingTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -407,14 +240,7 @@
 				1434B4371715188F0083E976 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		1434B4381715188F0083E976 /* Build configuration list for PBXNativeTarget "LoggingTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1434B4391715188F0083E976 /* Debug */,
-				1434B43A1715188F0083E976 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
