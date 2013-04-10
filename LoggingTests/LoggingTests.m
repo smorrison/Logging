@@ -7,6 +7,7 @@
 //
 
 #import "LoggingTests.h"
+#import "Logging.h"
 
 @implementation LoggingTests
 
@@ -24,9 +25,13 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testLogMessages
 {
-    STFail(@"Unit tests are not implemented yet in LoggingTests");
+    LogAssert(YES, @"assert message");
+    LogDebug(@"assert debug");
+    LogInfo(@"assert info");
+    LogWarning(@"assert warning");
+    LogError(@"assert error");
 }
 
 @end
