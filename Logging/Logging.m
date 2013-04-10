@@ -149,7 +149,7 @@ void Log(logCategory category, NSString *message, va_list args)
     static pid_t processId;
     dispatch_once(&onceToken, ^{
         formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"y-MM-dd HH:mm:s.SSS"];
+        [formatter setDateFormat:@"y-MM-dd HH:mm:ss.SSS"];
         processId = [[NSProcessInfo processInfo] processIdentifier];
     });
     NSDate *date = [[NSDate alloc] init];
