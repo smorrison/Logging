@@ -70,16 +70,17 @@ void Log(logCategory category, NSString *message, va_list args)
     static NSDateFormatter *formatter;
     dispatch_once(&onceToken, ^{
         formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateStyle:NSDateFormatterMediumStyle];
-        [formatter setTimeStyle:NSDateFormatterMediumStyle];
+        [formatter setDateFormat:@"y-MM-dd HH:mm:s.SSS"];
         applicationName = [[[[NSBundle mainBundle] bundleURL] lastPathComponent] stringByDeletingPathExtension];
     });
+    NSDate *date = [[NSDate alloc] init];
     NSString *formattedMessage = [[NSString alloc] initWithFormat:message arguments:args];
-    NSString *string = [[NSString alloc] initWithFormat:@"%@ %@ %@ %@", [formatter stringFromDate:[NSDate date]], applicationName, @"", formattedMessage];
+    NSString *string = [[NSString alloc] initWithFormat:@"%@ %@ %@ %@", [formatter stringFromDate:date], applicationName, @"", formattedMessage];
     NSLog(string);
 #if !(__has_feature(objc_arc))
     [string release];
     [formattedMessage release];
+    [date release];
 #endif
 }
 
