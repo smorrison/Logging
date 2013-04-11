@@ -17,6 +17,7 @@
 		1434B41A1715188F0083E976 /* Logging-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Logging-Prefix.pch"; sourceTree = "<group>"; };
 		1434B41B1715188F0083E976 /* Logging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		1434B41C1715188F0083E976 /* Logging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logging.m; sourceTree = "<group>"; };
+		14C588B617173F8200694C5C /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 		1434B4181715188F0083E976 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
+				14C588B617173F8200694C5C /* license.txt */,
 				1434B41B1715188F0083E976 /* Logging.h */,
 				1434B41C1715188F0083E976 /* Logging.m */,
 				1434B4191715188F0083E976 /* Supporting Files */,
