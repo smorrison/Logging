@@ -34,6 +34,10 @@ typedef enum {
 } LogCategory;
 
 static void Log_(LogCategory category, NSString *message, va_list args);
+static dispatch_queue_t LoggerDispatchQueue();
+static dispatch_io_t LoggerStdoutDispatchChannel();
+static dispatch_io_t LoggerStderrDispatchChannel();
+static dispatch_io_t LoggerDispatchChannel();
 
 void LogInfo(NSString *message, ...)
 {
@@ -78,6 +82,24 @@ void LogAssert(BOOL statement, NSString *message, ...)
         va_end(arglist);
     }
 }
+
+void LogStartup()
+{
+    LoggerDispatchQueue();
+    LoggerStdoutDispatchChannel();
+    LoggerDispatchChannel();
+}
+
+void LogShutdown()
+{
+    dispatch_io_close(LoggerStdoutDispatchChannel(), DISPATCH_IO_STOP);
+    dispatch_io_close(LoggerDispatchChannel(), DISPATCH_IO_STOP);
+    dispatch_release(LoggerStdoutDispatchChannel());
+    dispatch_release(LoggerDispatchChannel());
+    dispatch_release(LoggerDispatchQueue());
+}
+
+#pragma mark private
 
 static const char * GetLoggingName()
 {
@@ -128,6 +150,26 @@ static dispatch_queue_t LoggerDispatchQueue()
     return queue;
 }
 
+static dispatch_io_t LoggerStdoutDispatchChannel()
+{
+    static dispatch_io_t channel;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        channel = dispatch_io_create(DISPATCH_IO_STREAM, 1, LoggerDispatchQueue(), ^(int error){});
+    });
+    return channel;
+}
+
+static dispatch_io_t LoggerStderrDispatchChannel()
+{
+    static dispatch_io_t channel;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        channel = dispatch_io_create(DISPATCH_IO_STREAM, 2, LoggerDispatchQueue(), ^(int error){});
+    });
+    return channel;
+}
+
 static dispatch_io_t LoggerDispatchChannel()
 {
     static dispatch_io_t channel;
@@ -175,8 +217,15 @@ void Log_(LogCategory category, NSString *message, va_list args)
     const char *stringData = [string UTF8String];
     dispatch_queue_t queue = LoggerDispatchQueue();
     dispatch_io_t channel = LoggerDispatchChannel();
+    dispatch_io_t stdoutChannel = LoggerStdoutDispatchChannel();
+    dispatch_io_t stderrChannel = LoggerStderrDispatchChannel();
     dispatch_data_t dispatchData = dispatch_data_create(stringData, strlen(stringData) * sizeof(char), queue, DISPATCH_DATA_DESTRUCTOR_DEFAULT);
     dispatch_io_write(channel, 0, dispatchData, queue, ^(bool done, dispatch_data_t data, int error){});
+    if (category == LOG_FAILED_ASSERT || category == LOG_WARNING) {
+        dispatch_io_write(stderrChannel, 0, dispatchData, queue, ^(bool done, dispatch_data_t data, int error){});
+    } else {
+        dispatch_io_write(stdoutChannel, 0, dispatchData, queue, ^(bool done, dispatch_data_t data, int error){});
+    }
     dispatch_release(dispatchData);
 #if !(__has_feature(objc_arc))
     [string release];

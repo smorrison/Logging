@@ -65,3 +65,6 @@ void LogWarning(NSString *message, ...);
 void LogError(NSString *message, ...);
 void LogDebug(NSString *message, ...);
 void LogAssert(BOOL statement, NSString *message, ...);
+
+void LogStartup();
+void LogShutdown();
