@@ -94,9 +94,11 @@ void LogShutdown()
 {
     dispatch_io_close(LoggerStdoutDispatchChannel(), DISPATCH_IO_STOP);
     dispatch_io_close(LoggerDispatchChannel(), DISPATCH_IO_STOP);
+#if !(__has_feature(objc_arc))
     dispatch_release(LoggerStdoutDispatchChannel());
     dispatch_release(LoggerDispatchChannel());
     dispatch_release(LoggerDispatchQueue());
+#endif
 }
 
 #pragma mark private
@@ -220,14 +222,16 @@ void Log_(LogCategory category, NSString *message, va_list args)
     dispatch_io_t stdoutChannel = LoggerStdoutDispatchChannel();
     dispatch_io_t stderrChannel = LoggerStderrDispatchChannel();
     dispatch_data_t dispatchData = dispatch_data_create(stringData, strlen(stringData) * sizeof(char), queue, DISPATCH_DATA_DESTRUCTOR_DEFAULT);
-    dispatch_io_write(channel, 0, dispatchData, queue, ^(bool done, dispatch_data_t data, int error){});
+    if (channel != NULL) {
+        dispatch_io_write(channel, 0, dispatchData, queue, ^(bool done, dispatch_data_t data, int error){});
+    }
     if (category == LOG_FAILED_ASSERT || category == LOG_WARNING) {
         dispatch_io_write(stderrChannel, 0, dispatchData, queue, ^(bool done, dispatch_data_t data, int error){});
     } else {
         dispatch_io_write(stdoutChannel, 0, dispatchData, queue, ^(bool done, dispatch_data_t data, int error){});
     }
-    dispatch_release(dispatchData);
 #if !(__has_feature(objc_arc))
+    dispatch_release(dispatchData);
     [string release];
     [formattedMessage release];
     [date release];
