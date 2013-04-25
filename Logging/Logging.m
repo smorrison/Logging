@@ -178,11 +178,12 @@ static dispatch_io_t LoggerDispatchChannel()
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSString *usersLibrary = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *name = [[NSString alloc] initWithFormat:@"%s", GetLoggingName()];
-        NSString *logDirectory = [[usersLibrary stringByAppendingPathComponent:@"Logs"] stringByAppendingPathComponent:name];
+        NSString *logDirectory = [usersLibrary stringByAppendingPathComponent:@"Logs"];
+        mkdir([logDirectory fileSystemRepresentation], S_IRWXU);
+        logDirectory = [logDirectory stringByAppendingPathComponent:[[NSString alloc] initWithFormat:@"%s", GetLoggingName()]];
         int result = mkdir([logDirectory fileSystemRepresentation], S_IRWXU);
         if (result != 0 && (errno != EEXIST)) {
-            NSLog(@"couldn't create log directory, error: %s", strerror(errno));
+            NSLog(@"couldn't create log directory at '%@', error: %s", logDirectory, strerror(errno));
         } else {
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"y-MM-dd-HHmm"];
