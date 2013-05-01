@@ -180,7 +180,7 @@ static dispatch_io_t LoggerDispatchChannel()
         NSString *usersLibrary = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *logDirectory = [usersLibrary stringByAppendingPathComponent:@"Logs"];
         mkdir([logDirectory fileSystemRepresentation], S_IRWXU);
-        logDirectory = [logDirectory stringByAppendingPathComponent:[[NSString alloc] initWithFormat:@"%s", GetLoggingName()]];
+        logDirectory = [logDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%s", GetLoggingName()]];
         int result = mkdir([logDirectory fileSystemRepresentation], S_IRWXU);
         if (result != 0 && (errno != EEXIST)) {
             NSLog(@"couldn't create log directory at '%@', error: %s", logDirectory, strerror(errno));
@@ -197,9 +197,6 @@ static dispatch_io_t LoggerDispatchChannel()
             [formatter release];
 #endif
         }
-#if !(__has_feature(objc_arc))
-        [name release];
-#endif
     });
     return channel;
 }
