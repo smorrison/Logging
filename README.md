@@ -1,9 +1,10 @@
-# Simple log-file support for objective-c projects
+# Simple log-file support for objective-c (MacOS X and iOS) projects
 
-Provides `LogAssert(BOOL, NSString, ...), LogDebug(NSString, ...), LogInfo(NSString, ...), LogWarning(NSString, ...), LogError(NSString, ...)`.
+Provides `LogAssert(BOOL, NSString, ...), LogDebug(NSString, ...), LogInfo(NSString, ...), LogWarning(NSString, ...), LogError(NSString, ...), LogTodo(NSString, ...)`.
 
-Also provides macros `LOG_ASSERT,...` which add support for capturing the file/line number of the logging statement.
+Also provides macros `LOG_ASSERT, ...` which add support for capturing the file/line number of the logging statement.
 
+Provides a SHOULD_REIMPLEMENT() macro that will log methods that require reworking. This will provide a TODO in the resulting log file indicating the file/line#/method to be fixed.
 ##Example
 
 Within a project LoggerTest, the app delegate has the following method:
