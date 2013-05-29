@@ -20,6 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#define SHOULD_REIMPLEMENT() \
+do { \
+    char *file = __FILE__; \
+    char *ptr = strrchr(file, '/'); \
+    if (ptr != NULL) { file = ++ptr; } \
+    LogTodo([NSString stringWithFormat:@"(%s:%d) %@", file, __LINE__, @"method '%@' should be reimplemented"], NSStringFromSelector(_cmd), nil); \
+} while (0)
+
 #define LOG_ASSERT(stmt, message, ...) \
 do { \
     char *file = __FILE__; \
@@ -65,6 +73,7 @@ void LogWarning(NSString *message, ...);
 void LogError(NSString *message, ...);
 void LogDebug(NSString *message, ...);
 void LogAssert(BOOL statement, NSString *message, ...);
+void LogTodo(NSString *message, ...);
 
 void LogStartup();
 void LogShutdown();

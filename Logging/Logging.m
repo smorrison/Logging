@@ -30,7 +30,8 @@ typedef enum {
     LOG_DEBUG,
     LOG_ERROR,
     LOG_WARNING,
-    LOG_INFO
+    LOG_INFO,
+    LOG_TODO
 } LogCategory;
 
 static void Log_(LogCategory category, NSString *message, va_list args);
@@ -81,6 +82,14 @@ void LogAssert(BOOL statement, NSString *message, ...)
         Log_(LOG_FAILED_ASSERT, message, arglist);
         va_end(arglist);
     }
+}
+
+void LogTodo(NSString *message, ...)
+{
+    va_list arglist;
+    va_start(arglist, message);
+    Log_(LOG_TODO, message, arglist);
+    va_end(arglist);
 }
 
 void LogStartup()
@@ -136,7 +145,10 @@ static const char * GetCategoryName(LogCategory category)
         case LOG_ERROR:
             categoryString = " ERROR";
             break;
-        default:
+        case LOG_TODO:
+            categoryString = " TODO";
+            break;
+       default:
             break;
     }
     return categoryString;
