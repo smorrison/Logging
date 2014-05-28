@@ -33,8 +33,8 @@
 		1434B41A1715188F0083E976 /* Logging-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Logging-Prefix.pch"; sourceTree = "<group>"; };
 		1434B41B1715188F0083E976 /* Logging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		1434B41C1715188F0083E976 /* Logging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logging.m; sourceTree = "<group>"; };
-		14C588B617173F8200694C5C /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = SOURCE_ROOT; };
 		14C588B71717406300694C5C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		14CCBFC11936290500B0404E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		14E9F88717178F2E0005F732 /* libIOSLogging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIOSLogging.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,6 +61,7 @@
 		1434B4061715188F0083E976 = {
 			isa = PBXGroup;
 			children = (
+				14CCBFC11936290500B0404E /* LICENSE */,
 				14C588B71717406300694C5C /* README.md */,
 				1434B4181715188F0083E976 /* Logging */,
 				1434B4111715188F0083E976 /* Frameworks */,
@@ -88,7 +89,6 @@
 		1434B4181715188F0083E976 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
-				14C588B617173F8200694C5C /* license.txt */,
 				1434B41B1715188F0083E976 /* Logging.h */,
 				1434B41C1715188F0083E976 /* Logging.m */,
 				1434B41A1715188F0083E976 /* Logging-Prefix.pch */,
@@ -159,7 +159,7 @@
 		1434B4071715188F0083E976 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Sean Morrison";
 			};
 			buildConfigurationList = 1434B40A1715188F0083E976 /* Build configuration list for PBXProject "Logging" */;
@@ -227,6 +227,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 			};
 			name = Debug;
 		};
@@ -251,6 +253,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 			};
 			name = Release;
 		};
@@ -260,6 +263,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Logging/Logging-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = Debug;
 		};
@@ -269,6 +273,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Logging/Logging-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = Release;
 		};
@@ -284,6 +289,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Debug;
 		};
@@ -299,6 +305,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

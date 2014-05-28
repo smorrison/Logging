@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#define SHOULD_REIMPLEMENT() \
+#define SM_SHOULD_REIMPLEMENT() \
 do { \
     char *file = __FILE__; \
     char *ptr = strrchr(file, '/'); \
@@ -28,7 +28,7 @@ do { \
     LogTodo([NSString stringWithFormat:@"(%s:%d) %@", file, __LINE__, @"method '%@' should be reimplemented"], NSStringFromSelector(_cmd), nil); \
 } while (0)
 
-#define LOG_ASSERT(stmt, message, ...) \
+#define SM_LOG_ASSERT(stmt, message, ...) \
 do { \
     char *file = __FILE__; \
     char *ptr = strrchr(file, '/'); \
@@ -36,7 +36,7 @@ do { \
     LogAssert((stmt), [NSString stringWithFormat:@"(%s:%d) %@", file, __LINE__, (message)], ##__VA_ARGS__); \
 } while (0)
 
-#define LOG_DEBUG(message, ...) \
+#define SM_LOG_DEBUG(message, ...) \
 do { \
     char *file = __FILE__; \
     char *ptr = strrchr(file, '/'); \
@@ -44,7 +44,7 @@ do { \
     LogDebug([NSString stringWithFormat:@"(%s:%d) %@", file, __LINE__, (message)], ##__VA_ARGS__); \
 } while (0)
 
-#define LOG_INFO(message, ...) \
+#define SM_LOG_INFO(message, ...) \
 do { \
     char *file = __FILE__; \
     char *ptr = strrchr(file, '/'); \
@@ -52,7 +52,7 @@ do { \
     LogInfo([NSString stringWithFormat:@"(%s:%d) %@", file, __LINE__, (message)], ##__VA_ARGS__); \
 } while (0)
 
-#define LOG_WARNING(message, ...) \
+#define SM_LOG_WARNING(message, ...) \
 do { \
     char *file = __FILE__; \
     char *ptr = strrchr(file, '/'); \
@@ -60,7 +60,7 @@ do { \
     LogWarning([NSString stringWithFormat:@"(%s:%d) %@", file, __LINE__, (message)], ##__VA_ARGS__); \
 } while (0)
 
-#define LOG_ERROR(message, ...) \
+#define SM_LOG_ERROR(message, ...) \
 do { \
     char *file = __FILE__; \
     char *ptr = strrchr(file, '/'); \
